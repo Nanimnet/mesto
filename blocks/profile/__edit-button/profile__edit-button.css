@@ -4,7 +4,7 @@
     margin-top: 15px;
     opacity: 100%;
     transition: linear 0.2s;
-    cursor: pointer!important;
+    cursor: pointer;
 }
 
 .profile__edit-button:hover {
