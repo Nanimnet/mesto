@@ -1,0 +1,21 @@
+.popup__form-item {
+    border: 0;
+    width: 358px;
+    height: 27px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+    margin-top: 5px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.popup__form-item :focus {
+    outline-color: rgba(0, 0, 0, 0.5);  
+}
+
+@media only screen and (max-width: 470px) {
+    .popup__form-item {
+        width: 238px;
+    }
+}

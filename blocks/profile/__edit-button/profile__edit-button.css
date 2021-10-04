@@ -4,11 +4,11 @@
     margin-top: 15px;   
     opacity: 100%;
     transition: linear 0.2s;
+    cursor: pointer;
 }
 
 .profile__edit-button:hover {
     opacity: 0.6;
-    cursor: pointer;
 }
 
 @media only screen and (max-width: 1080px) {
