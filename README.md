@@ -8,4 +8,4 @@
 ### Планируется
 Добавить возможность добавления новых фотографий, возможность поставить лайк.
 
-Ссылка https://nanimnet.github.io/mesto/
+Ссылка https://nanimnet.github.io/mesto/index.html
