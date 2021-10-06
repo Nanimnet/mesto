@@ -9,6 +9,7 @@
     top: -40px;
     opacity: 100%;
     transition: linear 0.2s;
+    background-size:contain;
 }
 
 .popup__close:hover {
