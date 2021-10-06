@@ -7,5 +7,6 @@
 @media only screen and (max-width: 420px) {
     .profile__edit {
         gap: 10px;
+        justify-content: center;
     }
 }
