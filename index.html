@@ -26,54 +26,21 @@
                 </div>
                 <button class="profile__add-button" type="button"></button>
             </section>
-
             <section class="cards">
-                <div class="card">
-                    <img class="card__photo" src="images/item1.jpg" alt="Карачаевск">
-                    <div class="card__name">
-                        <h2 class="card__title">Карачаевск</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card__photo" src="images/item2.jpg" alt="Гора Эльбрус">
-                    <div class="card__name">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card__photo" src="images/item3.jpg" alt="Домбай">
-                    <div class="card__name">
-                        <h2 class="card__title">Домбай</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card__photo" src="images/item4.jpg" alt="Нью Йорк">
-                    <div class="card__name">
-                        <h2 class="card__title">New York</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card__photo" src="images/item5.jpg" alt="Сибирь">
-                    <div class="card__name">
-                        <h2 class="card__title">Сибирь</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card__photo" src="images/item6.jpg" alt="Казахстанские степи">
-                    <div class="card__name">
-                        <h2 class="card__title">Казахстанские степи</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
                 
-
             </section>
+<template id="cards-template">
+                <div class="card">
+                    <button class="card__delete" type="button"></button>
+                    <img class="card__photo" src="">
+                    <div class="card__name">
+                        <h2 class="card__title">
 
+                        </h2>
+                        <button class="card__like" type="button"></button>
+                    </div>
+                </div>
+        </template>
         </main>
         <footer class="footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -87,6 +54,24 @@
                     <input required type="text" class="popup__form-item popup__form-item_el_subheading" id="subheading" name="subheading" placeholder="Описание" value="">
                     <button class="popup__btn-submit" type="submit">Сохранить</button>
                 </form>
+            </div>
+        </div>
+        <div class="popup-add">
+            <div class="popup-add__content">
+                <button class="popup-add__close" type="button"></button>
+                <form class="popup-add__form" name="edit-form">
+                    <h3 class="popup-add__form-heading">Новое место</h3>
+                    <input required type="text" class="popup-add__form-item popup-add__form-item_el_heading" id="heading" name="heading" placeholder="Название" value="">
+                    <input required type="text" class="popup-add__form-item popup-add__form-item_el_subheading" id="subheading" name="subheading" placeholder="Ссылка на картинку" value="">
+                    <button class="popup-add__btn-submit" type="submit">Создать</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup-image">
+            <div class="popup-image__content">
+                <button class="popup-image__close" type="button"></button>
+                <img class="popup-image__img" src="/images/karach.jpg" alt="Карачаевск">
+                <p class="popup-image__description">Карачаево-Черкессия</p>
             </div>
         </div>
     </div>
