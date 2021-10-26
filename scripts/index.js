@@ -1,27 +1,42 @@
-const modalWindow = document.querySelector('.popup'); 
-const modalWindowCloseBtn = document.querySelector('.popup__close'); 
+const modalWindowProfile = document.querySelector('.popup-profile'); 
+const modalWindowProfileCloseBtn = document.querySelector('.popup-profile__close'); 
 const editBtn = document.querySelector('.profile__edit-button'); 
-const submitBtn = document.querySelector('.popup__btn-submit'); 
+const submitBtn = document.querySelector('.popup-profile__btn-submit'); 
 const nameСhange = document.querySelector('.profile__title'); 
 const jobСhange = document.querySelector('.profile__description'); 
-const formElement = document.querySelector('.popup__form'); 
-const nameInput = formElement.querySelector('.popup__form-item_el_heading'); // Воспользуйтесь инструментом .querySelector() 
-const jobInput = formElement.querySelector('.popup__form-item_el_subheading'); 
+const formElementProfile = document.querySelector('.popup-profile__form'); 
+const nameInput = formElementProfile.querySelector('.popup-profile__form-item_el_heading'); // Воспользуйтесь инструментом .querySelector() 
+const jobInput = formElementProfile.querySelector('.popup-profile__form-item_el_subheading'); 
 
-function openPopup() { 
-    modalWindow.classList.add('popup_is-opened'); 
-    nameInput.value = nameСhange.textContent; 
-    jobInput.value = jobСhange.textContent; 
-} 
+// function openPopup() { 
+//   modalWindowProfile.classList.add('popup-profile_is-opened'); 
+//     nameInput.value = nameСhange.textContent; 
+//     jobInput.value = jobСhange.textContent; 
+// } 
 
-function closePopup() { 
+// function closePopup() { 
 
-    modalWindow.classList.remove('popup_is-opened'); 
+//   modalWindowProfile.classList.remove('popup-profile_is-opened'); 
 
-} 
+// };
 
-editBtn.addEventListener('click', openPopup); 
-modalWindowCloseBtn.addEventListener('click', closePopup); 
+function togglePopup (modal, openClass) {
+  let isHasClass = modal.classList.contains('popup-profile_is-opened');
+  
+  if (isHasClass) {
+    modal.classList.remove('popup-profile_is-opened'); 
+  } else {
+    modal.classList.add('popup-profile_is-opened'); 
+    
+  }
+};
+
+editBtn.addEventListener('click', function (){
+  togglePopup(modalWindowProfile);
+  nameInput.value = nameСhange.textContent; 
+  jobInput.value = jobСhange.textContent; 
+}); 
+modalWindowProfileCloseBtn.addEventListener('click', closePopup); 
 
 // Обработчик «отправки» формы, хотя пока 
 // она никуда отправляться не будет 
@@ -36,11 +51,11 @@ function formSubmitHandler (evt) {
     nameСhange.textContent = nameInput.value; 
     jobСhange.textContent = jobInput.value; 
     closePopup();
-} 
+};
 
 // Прикрепляем обработчик к форме: 
 // он будет следить за событием “submit” - «отправка» 
-formElement.addEventListener('submit', formSubmitHandler); 
+formElementProfile.addEventListener('submit', formSubmitHandler); 
 
 //переменные для второго попапа - добавление карточек
 const modalWindowAdd = document.querySelector('.popup-add');

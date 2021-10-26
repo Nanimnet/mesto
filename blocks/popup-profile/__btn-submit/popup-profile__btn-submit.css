@@ -1,4 +1,4 @@
-.popup__btn-submit {
+.popup-profile__btn-submit {
     background-color: black;
     width: 358px;
     height: 50px;
@@ -15,12 +15,12 @@
     transition: linear 0.2s; 
 } 
 
-.popup__btn-submit:hover { 
+.popup-profile__btn-submit:hover { 
     opacity: 0.8;
 }
 
 @media only screen and (max-width: 470px) {
-    .popup__btn-submit {
+    .popup-profile__btn-submit {
         width: 238px;
         height: 46px;
         margin-top: 45px;

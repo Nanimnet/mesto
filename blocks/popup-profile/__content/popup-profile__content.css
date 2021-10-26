@@ -1,4 +1,4 @@
-.popup__content {
+.popup-profile__content {
     max-width: 430px;
     width: 100%;
     min-height: 330px;
@@ -11,7 +11,7 @@
 }
 
 @media only screen and (max-width: 470px) {
-    .popup__content {
+    .popup-profile__content {
         max-width: 282px;
         width: 100%;
         min-height: 322px;

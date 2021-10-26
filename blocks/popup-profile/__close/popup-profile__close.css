@@ -1,4 +1,4 @@
-.popup__close {
+.popup-profile__close {
     width: 32px;
     height: 32px;
     background: transparent url(../../../images/close.svg) center no-repeat;
@@ -12,12 +12,12 @@
     background-size:contain;
 }
 
-.popup__close:hover {
+.popup-profile__close:hover {
     opacity: 0.6;
 }
 
 @media only screen and (max-width: 470px) {
-    .popup__close {
+    .popup-profile__close {
         width: 20px;
         height: 20px;
         right: 0;
