@@ -36,8 +36,6 @@ const jobInput = formElementProfile.querySelector('.popup-profile__form-item_el_
 
 function openPopup(modal) { 
   modal.classList.add('popup_is-opened'); 
-
-
 };
 
 function closePopup(modal) { 
@@ -93,7 +91,6 @@ modalWindowCloseBtnAdd.addEventListener('click', function() {
 const cardContainer = document.querySelector('.cards');
 const cardForm = document.querySelector('.popup-add__form');
 const cardsTemplate = document.querySelector('#cards-template').content;
-const deleteBtn = document.querySelector('.card__delete');
 
 const renderCards = (card) => {
   const cardStr = cardsTemplate.cloneNode(true);
