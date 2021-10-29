@@ -92,38 +92,54 @@ const cardContainer = document.querySelector('.cards');
 const cardForm = document.querySelector('.popup-add__form');
 const cardsTemplate = document.querySelector('#cards-template').content;
 
-const renderCards = (card) => {
-  const cardStr = cardsTemplate.cloneNode(true);
-  const placeName = cardStr.querySelector('.card__title');
-  const placeLink = cardStr.querySelector('.card__photo');
+
+const createCard = (card) => {
+
+  const cardElement = cardsTemplate.cloneNode(true);
+  const placeName = cardElement.querySelector('.card__title');
+  const placeLink = cardElement.querySelector('.card__photo');
   placeName.textContent = card.name;
   placeLink.setAttribute('src', card.link);
   placeLink.setAttribute('alt', card.name);
 
+  addLogic(cardElement);
+  
+  return cardElement;
+};
+
+function renderCard(card) {
+  cardContainer.prepend(card);
+};
+
+function addLogic(cardElement) {
+
   //удалить
-  const cardDeleteBtn = cardStr.querySelector('.card__delete');
+  const cardDeleteBtn = cardElement.querySelector('.card__delete');
   cardDeleteBtn.addEventListener('click', (event) => {
     event.target.closest('.card').remove();
   });
 
   //Лайк
-  cardStr.querySelector('.card__like').addEventListener('click', (event) => {
+  cardElement.querySelector('.card__like').addEventListener('click', (event) => {
     event.target.classList.toggle('card__like_active');
-  }); 
-  
-  //Открываем картинку
-  placeLink.addEventListener('click', function(){
-    popupPhoto.setAttribute('src', card.link);
-    popupPhoto.setAttribute('alt', card.name);
-    popupDescription.textContent = card.name;
-    openPopup(popupImg);
   });
 
-
-  cardContainer.prepend(cardStr);
+  //Открываем картинку
+  const placeLink = cardElement.querySelector('.card__photo');
+  const src = placeLink.getAttribute('src');
+  const name = placeLink.getAttribute('alt');
+  placeLink.addEventListener('click', function () {
+    popupPhoto.setAttribute('src', src);
+    popupPhoto.setAttribute('alt', name);
+    popupDescription.textContent = name;
+    openPopup(popupImg);
+  });
 };
 
-initialCards.forEach(renderCards);
+initialCards.forEach(function (v, i, a) {
+ const newCard = createCard(v);
+ renderCard(newCard);
+});
 
 const addCard = (event) => {
   event.preventDefault();
@@ -132,8 +148,9 @@ const addCard = (event) => {
   const cardName = cardInputName.value;
   const cardInputLink = event.target.querySelector('.popup-add__form-item_el_subheading');
   const cardLink = cardInputLink.value;
-  let newCard = {name:cardName, link:cardLink};
-  renderCards(newCard);
+  const newCard = {name:cardName, link:cardLink};
+  const cardElement = createCard(newCard);
+  renderCard(cardElement);
 
   cardInputName.value = '';
   cardInputLink.value = '';
