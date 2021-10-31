@@ -1,4 +1,4 @@
-.popup-profile__form-item {
+.popup__input {
     border: 0;
     width: 358px;
     height: 27px;
@@ -10,16 +10,16 @@
     margin-top: 30px;
 }
 
-.popup-profile__form-item:first-of-type {
+.popup__input:first-of-type {
     margin-top: 0px;
 }
 
-.popup-profile__form-item:focus {
+.popup__input:focus {
     outline-color: rgba(0, 0, 0, 0.5);  
 }
 
 @media only screen and (max-width: 470px) {
-    .popup-profile__form-item {
+    .popup__input {
         width: 238px;
     }
 }

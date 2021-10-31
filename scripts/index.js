@@ -33,6 +33,7 @@ const jobСhange = document.querySelector('.profile__description');
 const formElementProfile = document.querySelector('.popup-profile__form'); 
 const nameInput = formElementProfile.querySelector('.popup-profile__form-item_el_heading'); // Воспользуйтесь инструментом .querySelector() 
 const jobInput = formElementProfile.querySelector('.popup-profile__form-item_el_subheading'); 
+const modal = document.querySelector('.root');
 
 function openPopup(modal) { 
   modal.classList.add('popup_is-opened'); 
@@ -168,3 +169,28 @@ const popupCloseBtn = document.querySelector('.popup-image__close');
 popupCloseBtn.addEventListener('click', function () {
   closePopup(popupImg)
 });
+
+//закрытие попапов на оверлей
+function clickOnOverlay(event) {
+  if (event.target === event.currentTarget) {
+    closePopup(modalWindowProfile);
+    closePopup(modalWindowAdd);
+    closePopup(popupImg);
+  }
+}
+
+modalWindowProfile.addEventListener('click', clickOnOverlay);
+modalWindowAdd.addEventListener('click', clickOnOverlay);
+popupImg.addEventListener('click', clickOnOverlay);
+
+//закрытие попапа клавишей
+function closeEsc(event) {
+  if (event.keyCode === 27) { 
+   closePopup(modalWindowProfile);
+   closePopup(modalWindowAdd);
+   closePopup(popupImg);
+  };
+};
+
+modal.addEventListener('keydown', closeEsc);
+

@@ -1,4 +1,4 @@
-.popup-profile__form-heading {
+.popup__heading {
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
@@ -6,7 +6,7 @@
 }
 
 @media only screen and (max-width: 470px) {
-    .popup-profile__form-heading {
+    .popup-__heading {
         font-size: 18px;
         line-height: 22px;
         margin: 0 0 75px;
