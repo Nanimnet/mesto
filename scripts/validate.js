@@ -1,40 +1,55 @@
-enableValidation();
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_is-valid',
+  errorPrefix: '-error',
+  errorClass: 'popup__input_is-valid'
+}); 
 
-function enableValidation() {
-  const forms = [...document.querySelectorAll('.popup__form')];
+function enableValidation(obj) {
+  const forms = [...document.querySelectorAll(obj.formSelector)];
 
-  forms.forEach(addListenersToForms);
+  forms.forEach(function(v, i, a) {
+    addListenersToForms(v, obj);
+  })
 }
 
-function addListenersToForms(form) {
-  const inputs = Array.from(form.querySelectorAll('.popup__input'));
+function addListenersToForms(form, obj) {
+  const inputs = Array.from(form.querySelectorAll(obj.inputSelector));
 
-  inputs.forEach(addListenersToInput);
+  inputs.forEach(function(v, i, a) {
+    addListenersToInput(v, obj);
+  })
 
-  form.addEventListener('submit', handleSubmit);
-  form.addEventListener('input', handleFormInput);
+  form.addEventListener('submit', function (e) {
+    handleSubmit(e, obj);
+  });
+  form.addEventListener('input', function (e) {
+    handleFormInput(e, obj);
+  });
 
-  setSubmitButtonState(form)
+  setSubmitButtonState(form, obj)
 };
 
-function handleFormInput(event) {
+function handleFormInput(event, obj) {
   const {currentTarget: form} = event;
 
-  setSubmitButtonState(form)
+  setSubmitButtonState(form, obj)
 };
 
-function setSubmitButtonState(form) {
-  const button = form.querySelector('.popup__button');
+function setSubmitButtonState(form, obj) {
+  const button = form.querySelector(obj.submitButtonSelector);
 
   button.disabled = !form.checkValidity();
-  button.classList.toggle('popup__button_is-valid', !form.checkValidity())
+  button.classList.toggle(obj.inactiveButtonClass, !form.checkValidity())
 }
 
-function handleSubmit(event) {
+function handleSubmit(event, obj) {
   event.preventDefault();
 
   const form = event.target;
-  const data = [...form.querySelectorAll('.popup__input')].reduce(
+  const data = [...form.querySelectorAll(obj.inputSelector)].reduce(
     (sum, input) => ({
       ...sum,
       [input.name]: input.value,
@@ -44,19 +59,21 @@ function handleSubmit(event) {
   
 }
 
-function addListenersToInput(input) {
-  input.addEventListener('input', handleFieldValidation);
+function addListenersToInput(input, obj) {
+  input.addEventListener('input', function (e) {
+    handleFieldValidation(e, obj);
+  })
 };
 
-function handleFieldValidation(event) {
-  const element = event.target;
+function handleFieldValidation(event, obj) {
 
-  const errorContainer = document.querySelector(`#${element.id}-error`);
+  const element = event.target;
+  const errorContainer = document.querySelector(`#${element.id}${obj.errorPrefix}`);
 
   errorContainer.textContent = element.validationMessage; 
-  
+
   element.classList.toggle (
-    'popup__input_is-valid',
+    obj.errorClass,
     !element.validity.valid,
   );
 }

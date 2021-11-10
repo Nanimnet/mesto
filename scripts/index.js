@@ -33,24 +33,28 @@ const jobСhange = document.querySelector('.profile__description');
 const formElementProfile = document.querySelector('.popup-profile__form'); 
 const nameInput = formElementProfile.querySelector('.popup-profile__form-item_el_heading'); // Воспользуйтесь инструментом .querySelector() 
 const jobInput = formElementProfile.querySelector('.popup-profile__form-item_el_subheading'); 
-const modal = document.querySelector('.root');
+const root = document.querySelector('.root');
 
 function openPopup(modal) { 
-  modal.classList.add('popup_is-opened'); 
+  modal.classList.add('popup_is-opened');
+  root.addEventListener('keydown', closeEsc);
 };
 
 function closePopup(modal) { 
   modal.classList.remove('popup_is-opened'); 
+  root.removeEventListener('keydown', closeEsc);
 };
 
 editBtn.addEventListener('click', function() {
   openPopup(modalWindowProfile);
+  
   nameInput.value = nameСhange.textContent; 
   jobInput.value = jobСhange.textContent; 
 }); 
 
 modalWindowCloseBtnProfile.addEventListener('click', function() {
   closePopup(modalWindowProfile);
+  submitBtnAdd.classList.add('popup__button_is-valid');
 }); 
 
 
@@ -68,6 +72,7 @@ function submitProfileForm (evt) {
     nameСhange.textContent = nameInput.value; 
     jobСhange.textContent = jobInput.value; 
     closePopup(modalWindowProfile);
+    submitBtnAdd.classList.add('popup__button_is-valid');
 } 
 
 // Прикрепляем обработчик к форме: 
@@ -85,8 +90,10 @@ const submitBtnAdd = document.querySelector('.popup-add__btn-submit');
 btnAdd.addEventListener('click', function() {
   openPopup(modalWindowAdd);
 });
+
 modalWindowCloseBtnAdd.addEventListener('click', function() {
   closePopup(modalWindowAdd);
+  submitBtnAdd.classList.add('popup__button_is-valid');
 });
 
 const cardContainer = document.querySelector('.cards');
@@ -156,6 +163,7 @@ const addCard = (event) => {
   cardInputName.value = '';
   cardInputLink.value = '';
   closePopup(modalWindowAdd);
+  submitBtnAdd.classList.add('popup__button_is-valid');
 };
 
 //Вешаем на форму добавления карточек обработчик событий
@@ -173,9 +181,7 @@ popupCloseBtn.addEventListener('click', function () {
 //закрытие попапов на оверлей
 function clickOnOverlay(event) {
   if (event.target === event.currentTarget) {
-    closePopup(modalWindowProfile);
-    closePopup(modalWindowAdd);
-    closePopup(popupImg);
+    closePopup(event.currentTarget);
   }
 }
 
@@ -186,11 +192,10 @@ popupImg.addEventListener('click', clickOnOverlay);
 //закрытие попапа клавишей
 function closeEsc(event) {
   if (event.keyCode === 27) { 
-   closePopup(modalWindowProfile);
-   closePopup(modalWindowAdd);
-   closePopup(popupImg);
+    const openedPopup = document.querySelector('.popup_is-opened') 
+   closePopup(openedPopup);
   };
 };
 
-modal.addEventListener('keydown', closeEsc);
+
 

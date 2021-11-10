@@ -21,8 +21,6 @@
 @import url(../blocks/card/__like/_active/card__like_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-@import url(../blocks/popup-image/popup-image.css);
-@import url(../blocks/popup-image/__close/popup-image__close.css);
 @import url(../blocks/popup-image/__content/popup-image__content.css);
 @import url(../blocks/popup-image/__description/popup-image__description.css);
 @import url(../blocks/popup-image/__img/popup-image__img.css);
