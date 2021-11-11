@@ -54,7 +54,6 @@ editBtn.addEventListener('click', function() {
 
 modalWindowCloseBtnProfile.addEventListener('click', function() {
   closePopup(modalWindowProfile);
-  submitBtnAdd.classList.add('popup__button_is-valid');
 }); 
 
 
@@ -72,7 +71,6 @@ function submitProfileForm (evt) {
     nameСhange.textContent = nameInput.value; 
     jobСhange.textContent = jobInput.value; 
     closePopup(modalWindowProfile);
-    submitBtnAdd.classList.add('popup__button_is-valid');
 } 
 
 // Прикрепляем обработчик к форме: 
@@ -93,7 +91,6 @@ btnAdd.addEventListener('click', function() {
 
 modalWindowCloseBtnAdd.addEventListener('click', function() {
   closePopup(modalWindowAdd);
-  submitBtnAdd.classList.add('popup__button_is-valid');
 });
 
 const cardContainer = document.querySelector('.cards');
@@ -164,6 +161,7 @@ const addCard = (event) => {
   cardInputLink.value = '';
   closePopup(modalWindowAdd);
   submitBtnAdd.classList.add('popup__button_is-valid');
+  submitBtnAdd.disabled = true
 };
 
 //Вешаем на форму добавления карточек обработчик событий
@@ -191,11 +189,8 @@ popupImg.addEventListener('click', clickOnOverlay);
 
 //закрытие попапа клавишей
 function closeEsc(event) {
-  if (event.keyCode === 27) { 
+  if (event.keyCode === 'Escape') { 
     const openedPopup = document.querySelector('.popup_is-opened') 
    closePopup(openedPopup);
   };
 };
-
-
-
