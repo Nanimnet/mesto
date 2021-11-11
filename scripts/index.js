@@ -189,7 +189,7 @@ popupImg.addEventListener('click', clickOnOverlay);
 
 //закрытие попапа клавишей
 function closeEsc(event) {
-  if (event.keyCode === 'Escape') { 
+  if (event.key === 'Escape') { 
     const openedPopup = document.querySelector('.popup_is-opened') 
    closePopup(openedPopup);
   };
