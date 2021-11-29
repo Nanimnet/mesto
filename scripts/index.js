@@ -3,7 +3,7 @@ const initialCards = [
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
-  
+
   {
     name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
@@ -155,7 +155,8 @@ const addCard = (event) => {
   const cardInputLink = event.target.querySelector('.popup-add__form-item_el_subheading');
   const cardLink = cardInputLink.value;
   const newCard = {name:cardName, link:cardLink};
-  const cardElement = createCard(newCard);
+  // const cardElement = createCard(newCard);
+  const cardElement = new Card(null, newCard).createCard();
   renderCard(cardElement);
 
   cardInputName.value = '';
@@ -195,3 +196,13 @@ function closeEsc(event) {
    closePopup(openedPopup);
   };
 };
+
+
+class Card {
+  constructor(title, link) {
+    this._title = title;
+    this._link = link;
+  }
+
+  
+}
