@@ -1,3 +1,6 @@
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -36,6 +39,7 @@ const nameInput = formElementProfile.querySelector('.popup-profile__form-item_el
 const jobInput = formElementProfile.querySelector('.popup-profile__form-item_el_subheading'); 
 const root = document.querySelector('.root');
 
+
 function openPopup(modal) { 
   modal.classList.add('popup_is-opened');
   root.addEventListener('keydown', closeEsc);
@@ -46,7 +50,7 @@ function closePopup(modal) {
   root.removeEventListener('keydown', closeEsc);
 };
 
-editBtn.addEventListener('click', function() {
+editBtn.addEventListener('click', function(e) {
   openPopup(modalWindowProfile);
   
   nameInput.value = nameСhange.textContent; 
@@ -58,25 +62,31 @@ modalWindowCloseBtnProfile.addEventListener('click', function() {
 }); 
 
 
-
-// Обработчик «отправки» формы, хотя пока 
-// она никуда отправляться не будет 
+// функция редактирования имени и описания профиля
 function submitProfileForm (evt) { 
-
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
-
-                                                // Так мы можем определить свою логику отправки. 
-
-                                                // О том, как это делать, расскажем позже. 
-    // Вставьте новые значения с помощью textContent 
+    evt.preventDefault(); 
     nameСhange.textContent = nameInput.value; 
     jobСhange.textContent = jobInput.value; 
     closePopup(modalWindowProfile);
 } 
 
-// Прикрепляем обработчик к форме: 
-// он будет следить за событием “submit” - «отправка» 
+// Прикрепляем обработчик к форме
 formElementProfile.addEventListener('submit', submitProfileForm); 
+
+initialCards.forEach((item) => {
+  const card = new Card(item.name, item.link);
+  const cardElement = card.generateCard();
+  const container = document.querySelector('.cards');
+
+  container.append(cardElement);
+});
+
+// создание карточки
+ function renderCard(card) {
+  document.querySelector('.cards').prepend(card);
+};
+
+
 
 //переменные для второго попапа - добавление карточек
 const modalWindowAdd = document.querySelector('.popup-add');
@@ -94,59 +104,10 @@ modalWindowCloseBtnAdd.addEventListener('click', function() {
   closePopup(modalWindowAdd);
 });
 
-const cardContainer = document.querySelector('.cards');
+
 const cardForm = document.querySelector('.popup-add__form');
-const cardsTemplate = document.querySelector('#cards-template').content;
 
-
-const createCard = (card) => {
-
-  const cardElement = cardsTemplate.cloneNode(true);
-  const placeName = cardElement.querySelector('.card__title');
-  const placeLink = cardElement.querySelector('.card__photo');
-  placeName.textContent = card.name;
-  placeLink.setAttribute('src', card.link);
-  placeLink.setAttribute('alt', card.name);
-
-  addLogic(cardElement);
-  
-  return cardElement;
-};
-
-function renderCard(card) {
-  cardContainer.prepend(card);
-};
-
-function addLogic(cardElement) {
-
-  //удалить
-  const cardDeleteBtn = cardElement.querySelector('.card__delete');
-  cardDeleteBtn.addEventListener('click', (event) => {
-    event.target.closest('.card').remove();
-  });
-
-  //Лайк
-  cardElement.querySelector('.card__like').addEventListener('click', (event) => {
-    event.target.classList.toggle('card__like_active');
-  });
-
-  //Открываем картинку
-  const placeLink = cardElement.querySelector('.card__photo');
-  const src = placeLink.getAttribute('src');
-  const name = placeLink.getAttribute('alt');
-  placeLink.addEventListener('click', function () {
-    popupPhoto.setAttribute('src', src);
-    popupPhoto.setAttribute('alt', name);
-    popupDescription.textContent = name;
-    openPopup(popupImg);
-  });
-};
-
-initialCards.forEach(function (v, i, a) {
- const newCard = createCard(v);
- renderCard(newCard);
-});
-
+// добавление карточки через форму
 const addCard = (event) => {
   event.preventDefault();
 
@@ -155,8 +116,8 @@ const addCard = (event) => {
   const cardInputLink = event.target.querySelector('.popup-add__form-item_el_subheading');
   const cardLink = cardInputLink.value;
   const newCard = {name:cardName, link:cardLink};
-  // const cardElement = createCard(newCard);
-  const cardElement = new Card(null, newCard).createCard();
+  // const cardElement = createCard(newCard); 
+  const cardElement = new Card(newCard.name, newCard.link).generateCard();
   renderCard(cardElement);
 
   cardInputName.value = '';
@@ -169,6 +130,7 @@ const addCard = (event) => {
 //Вешаем на форму добавления карточек обработчик событий
 cardForm.addEventListener('submit', addCard);
 
+//переменные для открытия и закрытия попапа картинки
 const popupImg = document.querySelector('.popup-image');
 const popupPhoto = document.querySelector('.popup-image__img');
 const popupDescription = document.querySelector('.popup-image__description');
@@ -198,11 +160,32 @@ function closeEsc(event) {
 };
 
 
-class Card {
-  constructor(title, link) {
-    this._title = title;
-    this._link = link;
-  }
+//валидация формы добавления новой карточки
+const formsAdd = [...document.querySelectorAll('.popup-add__form')];
 
-  
-}
+const formAdd = new FormValidator({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_is-valid',
+  errorPrefix: '-error',
+  errorClass: 'popup__input_is-valid'
+}, formsAdd);
+
+formAdd.publicEnableValidation()
+
+
+
+// валидация редактирования 
+const formsEdit = [...document.querySelectorAll('.popup-profile__form')];
+
+const formEdit = new FormValidator({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_is-valid',
+  errorPrefix: '-error',
+  errorClass: 'popup__input_is-valid'
+}, formsEdit);
+
+formEdit.publicEnableValidation()
