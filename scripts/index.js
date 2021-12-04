@@ -37,27 +37,27 @@ const jobСhange = document.querySelector('.profile__description');
 const formElementProfile = document.querySelector('.popup-profile__form'); 
 const nameInput = formElementProfile.querySelector('.popup-profile__form-item_el_heading'); // Воспользуйтесь инструментом .querySelector() 
 const jobInput = formElementProfile.querySelector('.popup-profile__form-item_el_subheading'); 
-const root = document.querySelector('.root');
+// const root = document.querySelector('.root');
 
 
-function openPopup(modal) { 
+export default function openPopup(modal) { 
   modal.classList.add('popup_is-opened');
-  root.addEventListener('keydown', closeEsc);
+  document.addEventListener('keydown', closeEsc);
 };
 
 function closePopup(modal) { 
   modal.classList.remove('popup_is-opened'); 
-  root.removeEventListener('keydown', closeEsc);
+  document.removeEventListener('keydown', closeEsc);
 };
 
-editBtn.addEventListener('click', function(e) {
+editBtn.addEventListener('click', (e) => {
   openPopup(modalWindowProfile);
   
   nameInput.value = nameСhange.textContent; 
   jobInput.value = jobСhange.textContent; 
 }); 
 
-modalWindowCloseBtnProfile.addEventListener('click', function() {
+modalWindowCloseBtnProfile.addEventListener('click', () => {
   closePopup(modalWindowProfile);
 }); 
 
@@ -74,7 +74,7 @@ function submitProfileForm (evt) {
 formElementProfile.addEventListener('submit', submitProfileForm); 
 
 initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link);
+  const card = new Card(item.name, item.link, '#cards-template');
   const cardElement = card.generateCard();
   const container = document.querySelector('.cards');
 
@@ -116,8 +116,7 @@ const addCard = (event) => {
   const cardInputLink = event.target.querySelector('.popup-add__form-item_el_subheading');
   const cardLink = cardInputLink.value;
   const newCard = {name:cardName, link:cardLink};
-  // const cardElement = createCard(newCard); 
-  const cardElement = new Card(newCard.name, newCard.link).generateCard();
+  const cardElement = new Card(newCard.name, newCard.link, '#cards-template').generateCard();
   renderCard(cardElement);
 
   cardInputName.value = '';
@@ -162,15 +161,16 @@ function closeEsc(event) {
 
 //валидация формы добавления новой карточки
 const formsAdd = [...document.querySelectorAll('.popup-add__form')];
-
-const formAdd = new FormValidator({
+const formConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_is-valid',
   errorPrefix: '-error',
   errorClass: 'popup__input_is-valid'
-}, formsAdd);
+};
+
+const formAdd = new FormValidator(formConfig, formsAdd);
 
 formAdd.publicEnableValidation()
 
@@ -179,13 +179,6 @@ formAdd.publicEnableValidation()
 // валидация редактирования 
 const formsEdit = [...document.querySelectorAll('.popup-profile__form')];
 
-const formEdit = new FormValidator({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_is-valid',
-  errorPrefix: '-error',
-  errorClass: 'popup__input_is-valid'
-}, formsEdit);
+const formEdit = new FormValidator(formConfig, formsEdit);
 
 formEdit.publicEnableValidation()

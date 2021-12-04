@@ -1,12 +1,16 @@
+import openPopup from './index.js';
+
 export default class Card {
-    constructor(name, link){
+    constructor(name, link, selectorTemlate){
       this.name = name;
       this.link = link;
+      this.selectorTemlate = selectorTemlate;
     }
   
     _getTemplate() {
       const cardElement = document
-      .querySelector('#cards-template')
+      .querySelector(this.selectorTemlate)
+    //   .querySelector('#cards-template')
       .content
       .querySelector('.card')
       .cloneNode(true);
@@ -22,58 +26,55 @@ export default class Card {
   
       //like
       this._element.querySelector('.card__like').addEventListener('click', (event) => {
-        this._handleClick();
+        this._handleClickLike();
       });
   
       //open image
       this._element.querySelector('.card__photo').addEventListener('click', (event) => {
+        if(`${event.target.classList}`.indexOf('card__like') != -1 || `${event.target.classList}`.indexOf('card__delete') != -1 ) {
+            return;
+          } 
         this._openImage();
       });
     };
   
-    _handleClick() {
+    _handleClickLike() {
       this._element.querySelector('.card__like').classList.toggle('card__like_active')
     };
   
     _openImage() {
-      const src = this._element.querySelector('.card__photo').getAttribute('src');
-      const title = this._element.querySelector('.card__title').innerText;
+    //   const src = this._element.querySelector('.card__photo').getAttribute('src');
+    //   const title = this._element.querySelector('.card__title').innerText;
       const popupImg = document.querySelector('.popup-image');
       const popupPhoto = document.querySelector('.popup-image__img');
       const popupDescription = document.querySelector('.popup-image__description');
-      this._element.addEventListener('click', (event) => {
-        if(`${event.target.classList}`.indexOf('card__like') != -1 || `${event.target.classList}`.indexOf('card__delete') != -1 ) {
-          return;
-        } 
-        popupPhoto.setAttribute('src', src);
-        popupPhoto.setAttribute('alt', title);
-        popupDescription.textContent = title;
-        this._openPopup(popupImg);
-      });
+      popupPhoto.setAttribute('src', this.link);
+      popupPhoto.setAttribute('alt', this.name);
+      popupDescription.textContent = this.name;
+      openPopup(popupImg);
     }
-
-    _openPopup(modal) { 
-        modal.classList.add('popup_is-opened');
-        const root = document.querySelector('.root');
-        root.addEventListener('keydown', this._closeEsc);
-      };
-
-      _closeEsc(event) {
-        if (event.key === 'Escape') { 
-            const openedPopup = document.querySelector('.popup_is-opened') 
-           closePopup(openedPopup);
-          };
-      }
   
     generateCard(){
       this._element = this._getTemplate();
       this._setEventListeners();
   
       this._element.querySelector('.card__photo').setAttribute('src', this.link);
+      this._element.querySelector('.card__photo').setAttribute('alt', this.name);
       this._element.querySelector('.card__title').textContent = this.name;
   
       return this._element;
     }
   };
 
+
+
+  class Section {
+    constructor({ data }, containerSelector) {
+      this._initialArray = data;
+      this._container = document.querySelector(containerSelector);
+    }
+  }
+
+  const obj = {data:123}
   
+  const s = new Section (obj)

@@ -14,16 +14,16 @@ export default class FormValidator {
     _enableValidation(obj) {
     //   const forms = [...document.querySelectorAll(obj.formSelector)];
       const forms = [...this.formElementList];
-      forms.forEach((v, i, a) => {
-       this._addListenersToForms(v, obj);
+      forms.forEach((value) => {
+       this._addListenersToForms(value, obj);
       })
     }
     
     _addListenersToForms(form, obj) {
       const inputs = Array.from(form.querySelectorAll(obj.inputSelector));
     
-      inputs.forEach((v, i, a) => {
-        this._addListenersToInput(v, obj);
+      inputs.forEach((value) => {
+        this._addListenersToInput(value, obj);
       })
     
       form.addEventListener('submit', (e) =>{
