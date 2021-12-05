@@ -35,9 +35,8 @@ const submitBtn = document.querySelector('.popup-profile__btn-submit');
 const nameСhange = document.querySelector('.profile__title'); 
 const jobСhange = document.querySelector('.profile__description'); 
 const formElementProfile = document.querySelector('.popup-profile__form'); 
-const nameInput = formElementProfile.querySelector('.popup-profile__form-item_el_heading'); // Воспользуйтесь инструментом .querySelector() 
+const nameInput = formElementProfile.querySelector('.popup-profile__form-item_el_heading'); 
 const jobInput = formElementProfile.querySelector('.popup-profile__form-item_el_subheading'); 
-// const root = document.querySelector('.root');
 
 
 export default function openPopup(modal) { 

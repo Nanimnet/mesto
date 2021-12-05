@@ -12,7 +12,6 @@ export default class FormValidator {
     }
      
     _enableValidation(obj) {
-    //   const forms = [...document.querySelectorAll(obj.formSelector)];
       const forms = [...this.formElementList];
       forms.forEach((value) => {
        this._addListenersToForms(value, obj);

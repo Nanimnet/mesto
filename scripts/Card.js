@@ -10,7 +10,6 @@ export default class Card {
     _getTemplate() {
       const cardElement = document
       .querySelector(this.selectorTemlate)
-    //   .querySelector('#cards-template')
       .content
       .querySelector('.card')
       .cloneNode(true);
@@ -31,9 +30,6 @@ export default class Card {
   
       //open image
       this._element.querySelector('.card__photo').addEventListener('click', (event) => {
-        if(`${event.target.classList}`.indexOf('card__like') != -1 || `${event.target.classList}`.indexOf('card__delete') != -1 ) {
-            return;
-          } 
         this._openImage();
       });
     };
@@ -43,8 +39,6 @@ export default class Card {
     };
   
     _openImage() {
-    //   const src = this._element.querySelector('.card__photo').getAttribute('src');
-    //   const title = this._element.querySelector('.card__title').innerText;
       const popupImg = document.querySelector('.popup-image');
       const popupPhoto = document.querySelector('.popup-image__img');
       const popupDescription = document.querySelector('.popup-image__description');
@@ -65,16 +59,3 @@ export default class Card {
       return this._element;
     }
   };
-
-
-
-  class Section {
-    constructor({ data }, containerSelector) {
-      this._initialArray = data;
-      this._container = document.querySelector(containerSelector);
-    }
-  }
-
-  const obj = {data:123}
-  
-  const s = new Section (obj)
