@@ -1,4 +1,4 @@
-import openPopup from './index.js';
+import PopupWithImage from './PopupWithImage.js';
 
 export default class Card {
     constructor(name, link, selectorTemlate){
@@ -39,13 +39,9 @@ export default class Card {
     };
   
     _openImage() {
-      const popupImg = document.querySelector('.popup-image');
-      const popupPhoto = document.querySelector('.popup-image__img');
-      const popupDescription = document.querySelector('.popup-image__description');
-      popupPhoto.setAttribute('src', this.link);
-      popupPhoto.setAttribute('alt', this.name);
-      popupDescription.textContent = this.name;
-      openPopup(popupImg);
+      const popupWithImage = new PopupWithImage('.popup-image');
+      popupWithImage.setEventListeners();
+      popupWithImage.open(this.link, this.name);
     }
   
     generateCard(){
