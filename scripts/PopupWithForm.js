@@ -24,11 +24,24 @@ export default class PopupWithForm extends Popup {
     });
   }
 
+  open(obj){
+      super.open();
+      Array.from(obj || []).forEach((v) => {
+        const input = this._formElement.querySelector(`input[name="${v.name}"]`);
+        if (input) {
+            input.value = v.value;
+        }
+      })
+      
+  }
+
   close() {
     super.close();
-    const cardInputName = this._formElement.querySelector('.popup-add__form-item_el_heading') || this._formElement.querySelector('.popup-profile__form-item_el_heading');
-    const cardInputLink = this._formElement.querySelector('.popup-add__form-item_el_subheading') || this._formElement.querySelector('.popup-profile__form-item_el_subheading');
-    cardInputName.value = '';
-    cardInputLink.value = '';
+    const cardInputName = this._formElement.querySelector('.popup-add__form-item_el_heading');
+    const cardInputLink = this._formElement.querySelector('.popup-add__form-item_el_subheading')
+    if(cardInputName) {
+        cardInputName.value = '';
+        cardInputLink.value = '';
+    };
   }
 }

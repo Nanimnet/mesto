@@ -40,6 +40,7 @@ export default class Card {
   
     _openImage() {
       const popupWithImage = new PopupWithImage('.popup-image');
+      popupWithImage.setEventListeners();
       popupWithImage.open(this.link, this.name);
     }
   
