@@ -1,0 +1,23 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "### Описание  Сайт где можно выложить фотографии с описанием и поставить лайк.",
+  "main": "index.js",
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nanimnet/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nanimnet/mesto/issues"
+  },
+  "homepage": "https://github.com/Nanimnet/mesto#readme"
+}
