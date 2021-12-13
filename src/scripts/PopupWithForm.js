@@ -43,13 +43,5 @@ export default class PopupWithForm extends Popup {
         cardInputName.value = '';
         cardInputLink.value = '';
     };
-    
-
-    // const event = new Event('input', {
-    //     bubbles: true
-    // });
-
-    // cardInputName.dispatchEvent(event);
-    // cardInputLink.dispatchEvent(event)
   }
 }
