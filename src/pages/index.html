@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+</head>
+<body class="root">
+    <header class="header">
+        <div class="header__logo"></div>
+    </header>
+
+    <main class="content">
+        <section class="profile">
+            <div class="profile__avatar"></div>
+            <div class="profile__info">
+                <div class="profile__edit">
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-button" type="button"></button>
+                </div>
+                    
+                    <p class="profile__description">Исследователь океана</p>
+                </div>
+                <button class="profile__add-button" type="button"></button>
+            </section>
+            <section class="cards">
+                
+            </section>
+<template id="cards-template">
+                <div class="card">
+                    <button class="card__delete" type="button"></button>
+                    <img class="card__photo" src="images/karach.jpg" alt="Карачаевск">
+                    <div class="card__name">
+                        <h2 class="card__title">
+
+                        </h2>
+                        <button class="card__like" type="button"></button>
+                    </div>
+                </div>
+        </template>
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">© 2020 Mesto Russia</p>
+        </footer>
+        <div class="popup popup-profile">
+            <div class="popup__content">
+                <button class="popup__close popup-profile__close" type="button"></button>
+                <form class="popup__form popup-profile__form" name="edit-form" novalidate>
+                    <h3 class="popup__heading">Редактировать профиль</h3>
+                    <input minlength="2" maxlength="40" required type="text" class="popup__input popup-profile__form-item popup-profile__form-item_el_heading" id="heading" name="heading-profile" placeholder="Имя" value="">
+                    <span id="heading-error" class="error"></span>
+                    <input minlength="2" maxlength="200" required type="text" class="popup__input popup-profile__form-item popup-profile__form-item_el_subheading" id="subheading" name="subheading-profile" placeholder="Описание" value="">
+                    <span id="subheading-error" class="error"></span>
+                    <button class="popup__button popup-profile__btn-submit" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup-add">
+            <div class="popup__content">
+                <button class="popup__close popup-add__close" type="button"></button>
+                <form class="popup__form popup-add__form" name="edit-mesto" novalidate>
+                    <h3 class="popup__heading">Новое место</h3>
+                    <input minlength="2" maxlength="30" required type="text" class="popup__input popup-add__form-item popup-add__form-item_el_heading" id="heading-place" name="heading-place" placeholder="Название" value="">
+                    <span id="heading-place-error" class="error"></span>
+                    <input required type="url" class="popup__input popup-add__form-item popup-add__form-item_el_subheading" id="subheading-place" name="link-place" placeholder="Ссылка на картинку" value="">
+                    <span id="subheading-place-error" class="error"></span>
+                    <button class="popup__button popup-add__btn-submit" type="submit">Создать</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup-image">
+            <div class="popup-image__content">
+                <button class="popup__close popup-image__close" type="button"></button>
+                <img class="popup-image__img" src="images/karach.jpg" alt="Карачаевск">
+                <p class="popup-image__description">Карачаево-Черкессия</p>
+            </div>
+        </div>
+</body>
+</html>
