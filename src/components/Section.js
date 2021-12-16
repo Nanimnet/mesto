@@ -8,9 +8,7 @@ export default class Section {
     }
   
     renderItems() {
-      this._initialArray.forEach(item => {
-            const card = new Card(item.name, item.link, '#cards-template');
-            const cardElement = card.generateCard();
+      this._initialArray.forEach(cardElement => {
             this._renderer(cardElement);
         });
     }
