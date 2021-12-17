@@ -1,10 +1,9 @@
-import PopupWithImage from './PopupWithImage.js';
-
 export default class Card {
-    constructor(name, link, selectorTemlate){
+    constructor(name, link, selectorTemlate, clickHandler){
       this.name = name;
       this.link = link;
       this.selectorTemlate = selectorTemlate;
+      this.clickHandler = clickHandler;
     }
   
     _getTemplate() {
@@ -39,9 +38,8 @@ export default class Card {
     };
   
     _openImage() {
-      const popupWithImage = new PopupWithImage('.popup-image');
-      popupWithImage.setEventListeners();
-      popupWithImage.open(this.link, this.name);
+      debugger;
+      this.clickHandler();
     }
   
     generateCard(){

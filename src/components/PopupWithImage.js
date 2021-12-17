@@ -6,6 +6,7 @@ export default class PopupWithImage extends Popup {
     }
 
     open(link, name) {
+      debugger;
      const popupImg = document.querySelector('.popup-image');
      const popupPhoto = document.querySelector('.popup-image__img');
      const popupDescription = document.querySelector('.popup-image__description');

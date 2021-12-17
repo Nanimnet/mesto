@@ -44,10 +44,16 @@ const userInfo = new UserInfo ('.profile__title', '.profile__description');
 
 const btnAdd = document.querySelector('.profile__add-button');
 
+const popupWithImage = new PopupWithImage('.popup-image');
+popupWithImage.setEventListeners();
+
 
 // класс секция 
 const section = new Section({ renderer: (item) => {
-  const card = new Card(item.name, item.link, '#cards-template');
+  const card = new Card(item.name, item.link, '#cards-template', function() {
+    debugger;
+      popupWithImage.open(item.link, item.name);
+  });
   const cardElement = card.generateCard();
   section.addItem(cardElement)
 }, items: initialCards }, '.cards')
@@ -103,7 +109,9 @@ const popupWithFormAdd = new PopupWithForm('.popup-add', (event) => {
   const cardValues = popupWithFormAdd._getInputValues();
 
   const section = new Section({ renderer: (item) => { 
-    const card = new Card(item.name, item.link, '#cards-template');
+    const card = new Card(item.name, item.link, '#cards-template', function(){
+      popupWithImage.open(item.link, item.name);
+    });
     const cardElement = card.generateCard();
     section.addItem(cardElement)}, 
     items: [{ name: cardValues['heading-place'], 
