@@ -6,7 +6,7 @@ import PopupWithImage from '../components/Popup.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
-import "index.css";
+import "./index.css";
 
 
 
@@ -102,7 +102,12 @@ const popupWithFormAdd = new PopupWithForm('.popup-add', (event) => {
   //логика добавления новой карточки на страницу
   const cardValues = popupWithFormAdd._getInputValues();
 
-  const section = new Section({ renderer: (data) => section.addItem(data), items: [{ name: cardValues['heading-place'], link: cardValues['link-place'] }] }, '.cards');
+  const section = new Section({ renderer: (item) => { 
+    const card = new Card(item.name, item.link, '#cards-template');
+    const cardElement = card.generateCard();
+    section.addItem(cardElement)}, 
+    items: [{ name: cardValues['heading-place'], 
+    link: cardValues['link-place'] }] }, '.cards');
   section.renderItems();
   popupWithFormAdd.close();
 });
