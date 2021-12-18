@@ -40,8 +40,7 @@ export default class FormValidator {
     this._setSubmitButtonState(this.form, obj);
   }
 
-  forceSubmitButtonState() {
-    const forms = [...this.formElementList];
+  submitButtonState() {
     forms.forEach((form) => {
       this._setSubmitButtonState(this.form, this.selectors);
     });

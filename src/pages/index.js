@@ -94,15 +94,14 @@ editBtn.addEventListener("click", (e) => {
 });
 
 // открытие попапа с добавлением
-const popupWithFormAdd = new PopupWithForm(".popup-add", (event) => {
+const popupWithFormAdd = new PopupWithForm(".popup-add", (event, values) => {
   event.preventDefault();
 
   //логика добавления новой карточки на страницу
-  const cardValues = popupWithFormAdd._getInputValues();
-  section.setInitialArray([
+  const cardValues = values;
+  section.addItem(createCard(
     { name: cardValues["heading-place"], link: cardValues["link-place"] },
-  ]);
-  section.renderItems();
+ ));
   popupWithFormAdd.close();
 });
 
@@ -110,7 +109,7 @@ popupWithFormAdd.setEventListeners();
 
 btnAdd.addEventListener("click", (e) => {
   popupWithFormAdd.open();
-  formAdd.forceSubmitButtonState();
+  formAdd.submitButtonState();
 });
 
 // валидация редактирования
