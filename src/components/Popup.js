@@ -1,7 +1,7 @@
 export default class Popup {
   static popupConfig = {
     openedClass: "popup_is-opened",
-    popupOverlayClassSelector: ".popup",
+    popupOverlayClassSelector: ".popup__overlay",
     buttonClosePopupClassSelector: ".popup__close",
   };
 
@@ -19,7 +19,7 @@ export default class Popup {
   open() {
     this._popup.classList.add(Popup.popupConfig.openedClass);
 
-    this._popupOverlay.addEventListener("mousedown", this._handlePopupOverlayClick);
+    this._popupOverlay.addEventListener('click', this._handlePopupOverlayClick);
 
     window.addEventListener("keyup", this._handleEscClose);
   }
@@ -29,7 +29,7 @@ export default class Popup {
   close() {
     this._popup.classList.remove(Popup.popupConfig.openedClass);
     this._popupOverlay.removeEventListener(
-      "mousedown",
+      'click',
       this._handlePopupOverlayClick
     );
 

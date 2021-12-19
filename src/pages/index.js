@@ -52,12 +52,12 @@ const validationConfig = {
 
 const addCardFormValidator = new FormValidator(
   validationConfig,
-  document.forms.addCard
+  document.forms.editMesto
 );
 
 const editProfileFormValidator = new FormValidator(
   validationConfig,
-  document.forms.editProfile
+  document.forms.editForm
 );
 
 const changeAvatarFormValidator = new FormValidator(
@@ -65,7 +65,7 @@ const changeAvatarFormValidator = new FormValidator(
   document.forms.updateAvatar
 );
 
-//кнопки
+
 const addNewCardButton = document.querySelector(".profile__add-button");
 
 const popupEditProfileEditButton = document.querySelector(
@@ -73,11 +73,11 @@ const popupEditProfileEditButton = document.querySelector(
 );
 
 const buttonChangeAvatarProfile = document.querySelector(
-  ".profile__avatar-change"
+  ".profile__avatar"
 );
-//кнопки
 
-//попапы
+
+
 const popupAddCart = new PopupWithForm({
   popupSelector: ".popup-add",
   submitFormCb: (formData) => {
@@ -142,26 +142,26 @@ const popupChangeAvatar = new PopupWithForm({
 });
 
 let popupAskDeleteCard = null;
-//попапы
 
-//функции
-function makeButtonChangeAvatarProfileVisible() {
-  buttonChangeAvatarProfile.style.visibility = "visible";
-  buttonChangeAvatarProfile.style.opacity = "1";
-  buttonChangeAvatarProfile.addEventListener(
-    "mouseout",
-    makeButtonChangeAvatarProfileUnvisible
-  );
-}
 
-function makeButtonChangeAvatarProfileUnvisible() {
-  buttonChangeAvatarProfile.style.visibility = "hidden";
-  buttonChangeAvatarProfile.style.opacity = "0";
-  buttonChangeAvatarProfile.removeEventListener(
-    "mouseout",
-    makeButtonChangeAvatarProfileUnvisible
-  );
-}
+
+// function makeButtonChangeAvatarProfileVisible() {
+//   buttonChangeAvatarProfile.style.visibility = "visible";
+//   buttonChangeAvatarProfile.style.opacity = "1";
+//   buttonChangeAvatarProfile.addEventListener(
+//     "mouseout"
+//     makeButtonChangeAvatarProfileUnvisible
+//   );
+// }
+
+// function makeButtonChangeAvatarProfileUnvisible() {
+//   buttonChangeAvatarProfile.style.visibility = "hidden";
+//   buttonChangeAvatarProfile.style.opacity = "0";
+//   buttonChangeAvatarProfile.removeEventListener(
+//     "mouseout",
+//     makeButtonChangeAvatarProfileUnvisible
+//   );
+// }
 
 function changeButtonTextWhenDoing(button) {
   button.textContent = "Сохранение...";
@@ -171,7 +171,7 @@ function returnCard(data) {
   const cardItem = new Card({
     cardData: data,
     handleCardClick: handleCardClick,
-    cardTemplateClassSelector: "#card-template",
+    cardTemplateClassSelector: "#cards-template",
     handleDeleteIconClick: () => handleDeleteIconClick(cardItem),
     currentOwner: currentUser,
 
@@ -254,20 +254,19 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   })
   .catch((err) => console.log(err));
 
-//активация попапов
+
 popupAddCart.setEventListeners();
 popupEditForm.setEventListeners();
 popupZoom.setEventListeners();
 popupChangeAvatar.setEventListeners();
-//активация попапов
 
-//валидация форм
+
+
 addCardFormValidator.enableValidation();
 editProfileFormValidator.enableValidation();
 changeAvatarFormValidator.enableValidation();
-//валидация форм
 
-//обработчики событий кнопок
+
 addNewCardButton.addEventListener("click", handleAddNewCardButton);
 
 buttonChangeAvatarProfile.addEventListener("click", () => {
@@ -287,7 +286,7 @@ popupEditProfileEditButton.addEventListener("click", () => {
   dispatchInputEvent(popupEditForm.form);
 });
 
-profileAvatar.addEventListener(
-  "mouseover",
-  makeButtonChangeAvatarProfileVisible
-);
+// profileAvatar.addEventListener(
+//   "mouseover",
+//   makeButtonChangeAvatarProfileVisible
+// );

@@ -53,9 +53,10 @@
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
         <div class="popup popup-profile">
+            <div class="popup__overlay"></div>
             <div class="popup__content">
                 <button class="popup__close popup-profile__close" type="button"></button>
-                <form class="popup__form popup-profile__form" name="edit-form" novalidate>
+                <form class="popup__form popup-profile__form" name="editForm" novalidate>
                     <h3 class="popup__heading">Редактировать профиль</h3>
                     <input minlength="2" maxlength="40" required type="text" class="popup__input popup-profile__form-item popup-profile__form-item_el_heading" id="heading-profile" name="heading-profile" placeholder="Имя" value="">
                     <span id="heading-profile-error" class="error"></span>
@@ -66,19 +67,21 @@
             </div>
         </div>
         <div class="popup popup-add">
+            <div class="popup__overlay"></div>
             <div class="popup__content">
                 <button class="popup__close popup-add__close" type="button"></button>
-                <form class="popup__form popup-add__form" name="edit-mesto" novalidate>
+                <form class="popup__form popup-add__form" name="editMesto" novalidate>
                     <h3 class="popup__heading">Новое место</h3>
                     <input minlength="2" maxlength="30" required type="text" class="popup__input popup-add__form-item popup-add__form-item_el_heading" id="heading-place" name="heading-place" placeholder="Название" value="">
                     <span id="heading-place-error" class="error"></span>
                     <input required type="url" class="popup__input popup-add__form-item popup-add__form-item_el_subheading" id="link-place" name="link-place" placeholder="Ссылка на картинку" value="">
-                    <span id="subheading-place-error" class="error"></span>
+                    <span id="link-place-error" class="error"></span>
                     <button class="popup__button popup-add__btn-submit" type="submit">Создать</button>
                 </form>
             </div>
         </div>
         <div class="popup popup-image">
+            <div class="popup__overlay"></div>
             <div class="popup-image__content">
                 <button class="popup__close popup-image__close" type="button"></button>
                 <img class="popup-image__img" src="#" alt="#">
@@ -86,18 +89,20 @@
             </div>
         </div>
         <div class="popup popup-delete">
+            <div class="popup__overlay"></div>
             <div class="popup-delete__content">
                 <button class="popup__close popup-delete__close" type="button"></button>
-                <form class="popup__form popup-delete__form" name="edit-mesto" novalidate>
+                <form class="popup__form popup-delete__form" name="askDeleteCard" novalidate>
                     <h3 class="popup__heading">Вы уверены?</h3>
                     <button class="popup__button popup-delete__btn-submit" type="submit">Да</button>
                 </form>
             </div>
         </div>
         <div class="popup popup-avatar">
+            <div class="popup__overlay"></div>
             <div class="popup-avatar__content">
                 <button class="popup__close popup-avatar__close" type="button"></button>
-                <form class="popup__form popup-avatar__form" name="edit-mesto" novalidate>
+                <form class="popup__form popup-avatar__form" name="updateAvatar" novalidate>
                     <h3 class="popup__heading">Обновить аватар</h3>
                     <input required type="url" class="popup__input popup-avatar__form-item popup-avatar__form-item_el_subheading" id="avatar-profile" name="avatar-profile" placeholder="Ссылка на картинку" value="">
                     <span id="avatar-profile-error" class="error"></span>
