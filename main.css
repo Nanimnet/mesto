@@ -3,8 +3,10 @@
 .root{background-color:#000;box-sizing:content-box;font-family:Inter,Arial,sans-serif;margin:0 auto;min-width:320px;padding:0 200px}@media only screen and (max-width:1280px){.root{max-width:1280px}}@media only screen and (max-width:1024px){.root{max-width:1024px;padding:0 60px}}@media only screen and (max-width:800px){.root{max-width:800px;padding:0 24px}}@media only screen and (max-width:420px){.root{padding:0}}
 .header{border-bottom:1px solid rgba(84,84,84,.7);margin:auto;max-width:880px;padding:45px 0 0}@media only screen and (max-width:420px){.header{max-width:320px;padding:28px 0 32px 27px}}
 .header__logo{background-image:url(03b78ada3425e9132ff3.svg);background-repeat:no-repeat;background-size:contain;height:33px;padding:0 0 41px;width:142px}@media only screen and (max-width:420px){.header__logo{height:25px;padding:0;width:104px}}
-.profile{align-items:center;display:flex;margin:40px auto 0;max-width:880px}@media only screen and (max-width:800px){.profile{flex-direction:column}}
-.profile__avatar{background-image:url(727b5baa123f981bf5e0.png);height:120px;margin-right:30px;width:120px}@media only screen and (max-width:800px){.profile__avatar{margin-right:0}}
+.profile{align-items:center;display:flex;gap:30px;margin:40px auto 0;max-width:880px}@media only screen and (max-width:800px){.profile{flex-direction:column;gap:0}}
+.profile__avatar-container{position:relative}
+.profile__avatar{background-image:url(727b5baa123f981bf5e0.png) center no-repeat;cursor:pointer;height:120px;transition:all .3s ease-in-out;width:120px;z-index:2}.profile__avatar:hover{opacity:.2}@media only screen and (max-width:800px){.profile__avatar{margin-right:0}}
+.profile__avatar-change{background:transparent url(1876a2f2a874239d7936.svg) no-repeat;background-position:50%;background-repeat:no-repeat;background-size:46px 46px;border:none;height:46px;height:100%;left:0;position:absolute;top:0;width:46px;width:100%;z-index:-1}@media screen and (max-width:424px){.profile__avatar-change{background-size:26px 26px}}
 .profile__info{display:flex;flex-direction:column}@media only screen and (max-width:800px){.profile__info{margin:26px 0 36px}}
 .profile__edit{display:flex;flex-direction:row;gap:18px}@media only screen and (max-width:420px){.profile__edit{gap:10px;justify-content:center}}
 .profile__title{color:#fff;font-size:42px;font-weight:500;line-height:48px;margin:0 0 7px;max-width:380px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media only screen and (max-width:1080px){.profile__title{font-size:27px;line-height:33px}}@media only screen and (max-width:920px){.profile__title{max-width:300px}}@media only screen and (max-width:400px){.profile__title{max-width:255px}}
@@ -15,10 +17,13 @@
 .card{background-color:#fff;border-radius:10px;position:relative;width:282px;z-index:1}
 .card__photo{background-size:contain;border-radius:10px 10px 0 0;cursor:pointer;height:282px;-o-object-fit:cover;object-fit:cover;width:282px}
 .card__delete{background:transparent url(823b0cf1b0b7e9cb7cad.svg) 50% no-repeat;border:none;height:19px;opacity:100%;position:absolute;right:20px;top:20px;transition:.2s linear;width:18px;z-index:2}.card__delete:hover{cursor:pointer;opacity:.6}
+.card__delete_hidden{display:none}
 .card__name{align-items:center;box-sizing:content-box;display:flex;flex-direction:row;justify-content:space-between;padding:20px 25px}
 .card__title{font-size:24px;font-weight:900;line-height:29px;margin:0;max-width:205px;min-width:205px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card__like-section{display:flex;flex-direction:column;gap:3px}
 .card__like{background:transparent url(0bc60938ca96a5dcae18.svg) 50% no-repeat;border:none;height:19px;opacity:100%;transition:.2s linear;width:22px}.card__like:hover{cursor:pointer;opacity:.5}
 .card__like_active{background:transparent url(e787eeb70bb65b7b453a.svg) 50% no-repeat;border:none;height:19px;width:22px}
+.card__like-count{font-size:13px;font-weight:400;line-height:15,73px;margin:0;text-align:center}
 .footer{margin:auto;max-width:880px;padding-bottom:60px}@media only screen and (max-width:420px){.footer{padding:0 19px 36px}}
 .footer__copyright{box-sizing:content-box;color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0}@media only screen and (max-width:420px){.footer__copyright{font-size:14px;line-height:17px}}
 .popup-image__content{box-sizing:border-box;margin:auto;max-width:75vw;position:relative}
@@ -34,5 +39,8 @@
 .popup__input{background-color:transparent;border:0;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;font-family:inherit;font-size:14px;height:27px;margin-top:30px;width:358px}.popup__input:first-of-type{margin-top:0}.popup__input:focus{outline-color:rgba(0,0,0,.5)}@media only screen and (max-width:470px){.popup__input{width:238px}}
 .popup__input_is-valid{border-bottom:1px solid red}
 .popup_is-opened{display:flex;opacity:1;transition:visibility 0s,opacity .5s linear;visibility:visible}
+.popup-delete__content{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box;max-width:430px;min-height:181px;padding:37px 36px;position:relative;width:100%}@media only screen and (max-width:470px){.popup__content{max-width:282px;min-height:322px;padding:25px 22px;width:100%}}
+.popup-delete__btn-submit{background-color:#000;border:0;border-radius:2px;box-sizing:border-box;color:#fff;cursor:pointer;font-size:18px;height:50px;line-height:22px;margin-top:0;opacity:100%;padding:14px 125px;transition:.2s linear;width:358px}
+.popup-avatar__content{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box;max-width:430px;min-height:272px;padding:37px 36px;position:relative;width:100%}
 .error{color:red;font-size:12px;font-weight:400;line-height:15px}
 
