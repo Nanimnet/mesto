@@ -1,22 +1,20 @@
-export default class Section {
-  constructor({ renderer, items }, containerSelector) {
-    this._initialArray = items;
-    this._renderer = renderer;
-    this._container = document.querySelector(containerSelector);
+export default class UserInfo {
+  constructor({ profileNameSelector, profileDescriptionSelector }) {
+    this._profileName = document.querySelector(profileNameSelector);
+    this._profileDescription = document.querySelector(
+      profileDescriptionSelector
+    );
   }
 
-  setInitialArray(items) {
-    this._initialArray = items;
+  getUserInfo() {
+    return {
+      profileName: this._profileName.textContent,
+      profileDescription: this._profileDescription.textContent,
+    };
   }
 
-  renderItems() {
-    this._initialArray.forEach((cardElement) => {
-      this._renderer(cardElement);
-    });
-  }
-
-  //создание карточки
-  addItem(element) {
-    this._container.prepend(element);
+  setUserInfo(name, description) {
+    this._profileName.textContent = name;
+    this._profileDescription.textContent = description;
   }
 }
