@@ -16,7 +16,6 @@
     <main class="content">
         <section class="profile">
             <div class="profile__avatar-container">
-                <!-- <div class="profile__avatar"></div> -->
                 <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар пользователя">
                 <button type="button" class="profile__avatar-change" aria-label="Кнопка редактирования аватара"></button>
             </div>
@@ -33,21 +32,7 @@
             <section class="cards">
                 
             </section>
-<template id="cards-template">
-                <div class="card">
-                    <button class="card__delete card__delete_hidden" type="button"></button>
-                    <img class="card__photo" src="#" alt="#">
-                    <div class="card__name">
-                        <h2 class="card__title">
 
-                        </h2>
-                        <div class="card__like-section">
-                            <button class="card__like" type="button"></button>
-                            <p class="card__like-count">8</p>
-                        </div>
-                    </div>
-                </div>
-        </template>
         </main>
         <footer class="footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -110,5 +95,21 @@
                 </form>
             </div>
         </div>
+
+        <template id="cards-template">
+            <div class="card">
+                <button class="card__delete card__delete_hidden" type="button"></button>
+                <img class="card__photo" src="#" alt="#">
+                <div class="card__name">
+                    <h2 class="card__title">
+
+                    </h2>
+                    <div class="card__like-section">
+                        <button class="card__like" type="button"></button>
+                        <p class="card__like-count">8</p>
+                    </div>
+                </div>
+            </div>
+    </template>
 </body>
 </html>

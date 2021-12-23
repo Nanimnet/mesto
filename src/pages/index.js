@@ -24,6 +24,7 @@ let currentUser = null;
 const userInfo = new UserInfo({
   profileNameSelector: ".profile__title",
   profileDescriptionSelector: ".profile__description",
+  profileAvatarSelector: '.profile__avatar'
 });
 
 const section = new Section(
@@ -131,7 +132,8 @@ const popupChangeAvatar = new PopupWithForm({
     api
       .changeAvatar({ newAvatarLink: formData["avatar-profile"] })
       .then((data) => {
-        profileAvatar.src = data.avatar;
+        setUserAvatar(data.avatar);
+        // profileAvatar.src = data.avatar;
         popupChangeAvatar.close();
       })
       .catch((err) => console.log(err))
@@ -141,27 +143,6 @@ const popupChangeAvatar = new PopupWithForm({
   },
 });
 
-let popupAskDeleteCard = null;
-
-
-
-// function makeButtonChangeAvatarProfileVisible() {
-//   buttonChangeAvatarProfile.style.visibility = "visible";
-//   buttonChangeAvatarProfile.style.opacity = "1";
-//   buttonChangeAvatarProfile.addEventListener(
-//     "mouseout"
-//     makeButtonChangeAvatarProfileUnvisible
-//   );
-// }
-
-// function makeButtonChangeAvatarProfileUnvisible() {
-//   buttonChangeAvatarProfile.style.visibility = "hidden";
-//   buttonChangeAvatarProfile.style.opacity = "0";
-//   buttonChangeAvatarProfile.removeEventListener(
-//     "mouseout",
-//     makeButtonChangeAvatarProfileUnvisible
-//   );
-// }
 
 function changeButtonTextWhenDoing(button) {
   button.textContent = "Сохранение...";
@@ -199,23 +180,26 @@ function returnCard(data) {
   return cardItem.createCard();
 }
 
-function handleDeleteIconClick(cardItem) {
-  popupAskDeleteCard = new PopupWithForm({
-    popupSelector: ".popup-delete",
-    submitFormCb: () => {
-      api
-        .deleteCard({ cardId: cardItem.getCardId() })
-        .then(() => {
-          cardItem.remove();
-          popupAskDeleteCard.close();
-        })
-        .catch((err) => console.log(err));
-    },
+const popupAskDeleteCard = new PopupWithForm({
+  popupSelector: ".popup-delete",
+  submitFormCb: () => {
+  }
+});
+
+ function handleDeleteIconClick(cardItem) {
+  popupAskDeleteCard.setSubmit(() => {
+    api
+      .deleteCard({ cardId: cardItem.getCardId() })
+      .then(() => {
+        cardItem.remove();
+        popupAskDeleteCard.close();
+      })
+      .catch((err) => console.log(err));
   });
 
   popupAskDeleteCard.setEventListeners();
   popupAskDeleteCard.open();
-}
+ }
 
 function handleAddNewCardButton() {
   addCardFormValidator.clearAllFormErrors();
@@ -248,7 +232,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cardsData]) => {
     currentUser = user;
     userInfo.setUserInfo(user["name"], user["about"]);
-    profileAvatar.src = user["avatar"];
+    userInfo.setUserAvatar(user["avatar"]);
 
     section.renderItems(cardsData.reverse());
   })
@@ -285,8 +269,3 @@ popupEditProfileEditButton.addEventListener("click", () => {
 
   dispatchInputEvent(popupEditForm.form);
 });
-
-// profileAvatar.addEventListener(
-//   "mouseover",
-//   makeButtonChangeAvatarProfileVisible
-// );

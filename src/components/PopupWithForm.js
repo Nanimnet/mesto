@@ -18,6 +18,10 @@ export default class PopupWithForm extends Popup {
     );
   }
 
+  setSubmit(submitFormCb) {
+    this._submitFormCb = submitFormCb;
+  }
+
   _getInputValues() {
     this._inputs = this.form.querySelectorAll(
       PopupWithForm.popupWithFormConfig.formInputClassSelector
