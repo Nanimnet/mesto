@@ -132,7 +132,7 @@ const popupChangeAvatar = new PopupWithForm({
     api
       .changeAvatar({ newAvatarLink: formData["avatar-profile"] })
       .then((data) => {
-        setUserAvatar(data.avatar);
+        userInfo.setUserAvatar(data.avatar);
         // profileAvatar.src = data.avatar;
         popupChangeAvatar.close();
       })
