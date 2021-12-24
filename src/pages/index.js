@@ -133,7 +133,6 @@ const popupChangeAvatar = new PopupWithForm({
       .changeAvatar({ newAvatarLink: formData["avatar-profile"] })
       .then((data) => {
         userInfo.setUserAvatar(data.avatar);
-        // profileAvatar.src = data.avatar;
         popupChangeAvatar.close();
       })
       .catch((err) => console.log(err))
@@ -186,6 +185,8 @@ const popupAskDeleteCard = new PopupWithForm({
   }
 });
 
+popupAskDeleteCard.setEventListeners();
+
  function handleDeleteIconClick(cardItem) {
   popupAskDeleteCard.setSubmit(() => {
     api
@@ -197,7 +198,6 @@ const popupAskDeleteCard = new PopupWithForm({
       .catch((err) => console.log(err));
   });
 
-  popupAskDeleteCard.setEventListeners();
   popupAskDeleteCard.open();
  }
 

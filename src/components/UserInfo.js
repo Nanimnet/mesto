@@ -22,6 +22,8 @@ export default class UserInfo {
   }
 
   setUserAvatar(link){
-    this._profileAvatar.src = link;
+    if(link) { 
+      this._profileAvatar.src = link;
+    }
   }
 }
